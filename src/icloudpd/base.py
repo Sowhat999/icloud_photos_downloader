@@ -29,6 +29,8 @@ import time
 import sys
 import os
 from multiprocessing import freeze_support
+from security import safe_command
+
 freeze_support()  # fixing tqdm on macos
 
 
@@ -763,7 +765,7 @@ def core(
         )
     except TwoStepAuthRequiredError:
         if notification_script is not None:
-            subprocess.call([notification_script])
+            safe_command.run(subprocess.call, [notification_script])
         if smtp_username is not None or notification_email is not None:
             send_2sa_notification(
                 logger,

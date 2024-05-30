@@ -268,7 +268,7 @@ class PhotosService(PhotoLibrary):
                 response = request.json()
                 zones = response['zones'] 
             except Exception as e:
-                    logger.error("library exception: %s" % str(e))
+                    logger.error("library exception: %s", str(e))
 
             libraries = {}
             for zone in zones:
